@@ -6,12 +6,35 @@
 //
 
 import SwiftUI
-
+import Firebase
 @main
+
+
+
 struct FireBaseAuthWithoutPod_POCApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if UserDefaults.standard.bool(forKey: "islogin"){
+                DashboardView()
+                  
+            }else{
+                LoginView()
+            
+            }
+          
         }
     }
+}
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+      FirebaseApp.configure()
+
+    return true
+  }
 }
