@@ -34,7 +34,8 @@ struct SignUpView: View {
                         VStack {
                                HStack{
                                     
-                                    Image("digiClassIconWhite")
+                                   Image("digiClassIconWhite")
+                                       .foregroundColor(.white)
                                     Text("DigiClass")
                                         .font(.title)
                                         .fontWeight(.bold)

@@ -22,6 +22,7 @@ struct LoginView: View {
     @State var showEnterYourEmail = false
     @State var showEnterYourPassword = false
     @State var showDonotHaveAccount = false
+    @State var isForgotPassword = false
     @State var UserstatusMessage = ""
     @StateObject var viewModel = LoginViewModel()
     var body: some View {
@@ -33,6 +34,7 @@ struct LoginView: View {
                 
                 NavigationLink(isActive: $moveToSignUpView) {
                     SignUpView()
+                        .navigationBarBackButtonHidden(true)
                 } label: {
                     EmptyView()
                 }
@@ -41,6 +43,12 @@ struct LoginView: View {
                 } label: {
                     EmptyView()
                 }
+                NavigationLink(isActive: $isForgotPassword) {
+                    ForgotPasswordView()
+                } label: {
+                    EmptyView()
+                }
+
                 //            Color.blue
                 LinearGradient(colors: [Color(hex: "1A7BDC").opacity(0.85), Color(hex: "56B8FF").opacity(0.85)], startPoint: .leading, endPoint: .trailing)
                     .edgesIgnoringSafeArea(.all)
@@ -49,8 +57,9 @@ struct LoginView: View {
                     
                     
                     HStack{
-                        
+                       // Image("digiClassIconWhite")
                         Image("digiClassIconWhite")
+                            .foregroundColor(.white)
                         
                         Text("DigiClass")
                             .font(.title)
@@ -126,10 +135,10 @@ struct LoginView: View {
         }
         
     }
-    
+ 
     @ViewBuilder var buttonForgotPassword: some View {
         Button(action: {
-            
+            isForgotPassword = true
         }, label: {
             Text("Forgot Password?")
                 .foregroundColor(Color(hex: "147AFC"))

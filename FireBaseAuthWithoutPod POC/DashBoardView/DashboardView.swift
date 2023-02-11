@@ -11,7 +11,7 @@ struct DashboardView: View {
     @State var isLoaderShown = false
     @State var  showLeftMenu = false
     var body: some View {
-    //    NavigationView {
+       NavigationView {
             ZStack {
                 dashBoardView
                 SideMenuView(isMenuVisible: $showLeftMenu)
@@ -22,8 +22,8 @@ struct DashboardView: View {
             .onAppear{
                 isLoaderShown = false
             }
-//        }.navigationBarHidden(true)
-//        .navigationBarBackButtonHidden(true)
+        }.navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
     }
     @ViewBuilder var dashBoardView: some View{

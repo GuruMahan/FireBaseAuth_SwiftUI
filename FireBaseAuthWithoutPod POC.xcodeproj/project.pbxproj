@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18A117B329979868008BA6A1 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A117B229979868008BA6A1 /* ForgotPasswordView.swift */; };
 		18C3302C2994F8DD00B879B6 /* FireBaseAuthWithoutPod_POCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C3302B2994F8DD00B879B6 /* FireBaseAuthWithoutPod_POCApp.swift */; };
 		18C330302994F8DE00B879B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C3302F2994F8DE00B879B6 /* Assets.xcassets */; };
 		18C330332994F8DE00B879B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18C330322994F8DE00B879B6 /* Preview Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18A117B229979868008BA6A1 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		18C330282994F8DD00B879B6 /* FireBaseAuthWithoutPod POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FireBaseAuthWithoutPod POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C3302B2994F8DD00B879B6 /* FireBaseAuthWithoutPod_POCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthWithoutPod_POCApp.swift; sourceTree = "<group>"; };
 		18C3302F2994F8DE00B879B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 			path = ViewModifyer;
 			sourceTree = "<group>";
 		};
+		18A117B12997983D008BA6A1 /* ForgotPasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				18A117B229979868008BA6A1 /* ForgotPasswordView.swift */,
+			);
+			path = ForgotPasswordView;
+			sourceTree = "<group>";
+		};
 		18C3301F2994F8DD00B879B6 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 				18416449299663930094771A /* ViewModifyer */,
 				18416445299662F20094771A /* SignUpView */,
 				18416446299663280094771A /* LoginView */,
+				18A117B12997983D008BA6A1 /* ForgotPasswordView */,
 				184164472996634B0094771A /* DashBoardView */,
 				18C3302F2994F8DE00B879B6 /* Assets.xcassets */,
 				18C330312994F8DE00B879B6 /* Preview Content */,
@@ -235,6 +246,7 @@
 				18C3302C2994F8DD00B879B6 /* FireBaseAuthWithoutPod_POCApp.swift in Sources */,
 				18C330422994F96200B879B6 /* LoginViewModel.swift in Sources */,
 				18C3306C2994FB8100B879B6 /* TextFieldClearButton.swift in Sources */,
+				18A117B329979868008BA6A1 /* ForgotPasswordView.swift in Sources */,
 				18C330502994F98F00B879B6 /* Extention + UserDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
