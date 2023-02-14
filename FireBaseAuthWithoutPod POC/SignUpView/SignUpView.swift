@@ -292,7 +292,6 @@ struct SignUpView: View {
             }
             print("Successfully create user: \(result?.user.uid ?? "")")
             self.userMessageStatus = "Successfully create user: \(result?.user.uid ?? "")"
-            
             self.storeUserInfomation()
         }
     }
@@ -300,9 +299,11 @@ struct SignUpView: View {
     func storeUserInfomation(){
         guard let uid  =  Auth.auth().currentUser?.uid else {return}
         let userData = ["email": self.emailText,"password": self.passWordText, "uid": uid]
-        Firestore.firestore().collection("user")
-            .document(uid).setData(userData) {err in
-                if let err = err{
+      
+//            .addDocument(data: userData).collection("user")
+        Firestore.firestore().collection("user").addDocument(data: userData) { err in
+             
+            if let err = err{
                     print(err)
                     self.userMessageStatus = "\(err)"
                     return

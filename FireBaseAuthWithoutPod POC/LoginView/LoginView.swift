@@ -24,6 +24,7 @@ struct LoginView: View {
     @State var showDonotHaveAccount = false
     @State var isForgotPassword = false
     @State var UserstatusMessage = ""
+  
     @StateObject var viewModel = LoginViewModel()
     var body: some View {
         
@@ -138,6 +139,7 @@ struct LoginView: View {
  
     @ViewBuilder var buttonForgotPassword: some View {
         Button(action: {
+          
             isForgotPassword = true
         }, label: {
             Text("Forgot Password?")
@@ -293,6 +295,7 @@ struct LoginView: View {
                 return
             }else{
                 print("Successfully logged in as user: \(result?.user.uid ?? "")")
+               
                 self.UserstatusMessage = "Successfully logged in as user : \(result?.user.uid ?? "")"
                 isSuccess = true
                 UserDefaults.standard.set(true, forKey: "islogin")
