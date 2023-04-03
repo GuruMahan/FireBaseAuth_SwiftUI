@@ -13,33 +13,27 @@ struct ForgotPasswordView: View {
     @State var errorMessage = false
     @State var goToSetNPassView = false
     @Environment(\.presentationMode) var presentationMode
-   
+    
     var body: some View {
         ZStack{
             NavigationLink(isActive: $goToSetNPassView) {
                 SetNewPasswordView(email1: registerEmail)
-                 
-              //  SetNewPasswordVM(email: registerEmail)
-                   
             } label: {
                 EmptyView()
             }
-
             LinearGradient(colors: [Color(hex: "1A7BDC").opacity(0.85), Color(hex: "56B8FF").opacity(0.85)], startPoint: .leading, endPoint: .trailing)
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 HStack{
-                    
                     Image("digiClassIconWhite")
                         .foregroundColor(.white)
-                    
                     Text("DigiClass")
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundColor(Color.white)
                 }
                 VStack{
-                  Text("Forgot Password")
+                    Text("Forgot Password")
                         .foregroundColor(.black.opacity(0.7))
                         .padding()
                     TextField("Enter Registered Email", text: $registerEmail)
@@ -51,7 +45,6 @@ struct ForgotPasswordView: View {
                             .stroke(Color.gray.opacity(0.35)))
                     Button {
                         if !registerEmail.isEmpty{
-                          
                             Auth.auth().sendPasswordReset(withEmail: registerEmail){ err in
                                 if let error = err{
                                     self.StatusMessage = "\(error)"
@@ -59,9 +52,7 @@ struct ForgotPasswordView: View {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
                                         errorMessage = false
                                     }
-                                    
                                 }else{
-                                    
                                     StatusMessage = "Ready To Reset Password"
                                     errorMessage = true
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 2){
@@ -82,18 +73,17 @@ struct ForgotPasswordView: View {
                     if errorMessage{
                         displayAlertMessage(userMessage: StatusMessage)
                     }
-                 Spacer()
-                  
+                    Spacer()
                 }
                 .padding()
-                    .frame(maxWidth: .infinity,maxHeight: 500)
-                    .background(Color.white)
-                    .cornerRadius(20)
-                    .padding()
+                .frame(maxWidth: .infinity,maxHeight: 500)
+                .background(Color.white)
+                .cornerRadius(20)
+                .padding()
             }
-           
         }.edgesIgnoringSafeArea(.all)
     }
+    
     @ViewBuilder func displayAlertMessage(userMessage:String) -> some View{
         VStack{
             Text("\(userMessage)")
@@ -101,7 +91,6 @@ struct ForgotPasswordView: View {
                 .font(Font.custom("Roboto-Regular", size: 14))
         }
     }
-    
 }
 
 

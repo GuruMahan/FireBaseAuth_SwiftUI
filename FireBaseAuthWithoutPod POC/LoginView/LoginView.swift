@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
-    
     @State var emailText:String = ""
     @State var passWordText:String = ""
     @State var isSuccess = false
@@ -24,15 +23,11 @@ struct LoginView: View {
     @State var showDonotHaveAccount = false
     @State var isForgotPassword = false
     @State var UserstatusMessage = ""
-  
+    
     @StateObject var viewModel = LoginViewModel()
     var body: some View {
-        
         NavigationView {
-            
-            
             ZStack {
-                
                 NavigationLink(isActive: $moveToSignUpView) {
                     SignUpView()
                         .navigationBarBackButtonHidden(true)
@@ -49,19 +44,12 @@ struct LoginView: View {
                 } label: {
                     EmptyView()
                 }
-
-                //            Color.blue
                 LinearGradient(colors: [Color(hex: "1A7BDC").opacity(0.85), Color(hex: "56B8FF").opacity(0.85)], startPoint: .leading, endPoint: .trailing)
                     .edgesIgnoringSafeArea(.all)
-                
                 VStack {
-                    
-                    
                     HStack{
-                       // Image("digiClassIconWhite")
                         Image("digiClassIconWhite")
                             .foregroundColor(.white)
-                        
                         Text("DigiClass")
                             .font(.title)
                             .fontWeight(.bold)
@@ -75,7 +63,6 @@ struct LoginView: View {
                     .shadow(color: Color(hex: "111827").opacity(0.4),
                             radius: 2, x: 1, y: 1)
                     .padding()
-                    
                     Text(self.UserstatusMessage)
                 }
             }
@@ -84,18 +71,15 @@ struct LoginView: View {
     }
     
     @ViewBuilder var bodyView: some View{
-        
         VStack{
             Text("Login")
                 .foregroundColor(Color(hex: "666666"))
                 .font(Font.custom("Roboto-Medium", size: 18))
                 .padding()
-            
             textFieldPanel
             ZStack{
                 Button {
                     check()
-                  
                 } label: {
                     Text("Login")
                         .font(Font.custom("Roboto-Medium", size: 16))
@@ -116,14 +100,12 @@ struct LoginView: View {
                 }
             }
             buttonForgotPassword
-            
             Divider().padding()
             Text("Don't have an account yet?")
                 .foregroundColor(Color(hex: "4B5563"))
                 .font(Font.custom("Roboto-Regular", size: 18))
             Button {
                 moveToSignUpView = true
-               
             } label: {
                 Text("Sign Up")
                     .foregroundColor(Color(hex: "147AFC"))
@@ -131,15 +113,11 @@ struct LoginView: View {
                     .foregroundColor(Color.blue)
                     .padding()
             }
-            
-            
         }
-        
     }
- 
+    
     @ViewBuilder var buttonForgotPassword: some View {
         Button(action: {
-          
             isForgotPassword = true
         }, label: {
             Text("Forgot Password?")
@@ -151,7 +129,6 @@ struct LoginView: View {
                                     bottom: 0,
                                     trailing: 10))
         })
-        
     }
     
     @ViewBuilder var textFieldPanel: some View {
@@ -160,8 +137,6 @@ struct LoginView: View {
                 Text("Email")
                     .foregroundColor(Color(hex: "6B7280"))
                     .font(Font.custom("Roboto-Regular", size: 14))
-                
-                
                 TextField("Enter Email Id", text: $emailText)
                     .autocapitalization(.none)
                     .clearTextFieldText(text: $emailText)
@@ -170,24 +145,18 @@ struct LoginView: View {
                     .frame(height: 48)
                     .background(RoundedRectangle(cornerRadius: 5).stroke(Color(hex: "D1D5DB")))
                 emailShowAlertText()
-                
-                
             }.padding()
-            
             VStack(alignment: .leading){
                 Text(
                     "PassWord")
                 .foregroundColor(Color(hex: "6B7280"))
                 .font(Font.custom("Roboto-Regular", size: 14))
-                
                 PasswordField(password: $passWordText)
-                
                 passwordShowAlertText()
-                
             }.padding()
-            
         }
     }
+    
     @ViewBuilder func displayAlertMessage(userMessage:String) -> some View{
         VStack{
             Text("\(userMessage)")
@@ -195,40 +164,32 @@ struct LoginView: View {
                 .font(Font.custom("Roboto-Regular", size: 14))
         }
     }
+    
     @ViewBuilder func emailShowAlertText() -> some View{
         if showEmailValidationErrorLabel{
-            
             Text("Invalid EMail")
-            
         }
         if showEmailFormat{
             displayAlertMessage(userMessage:"Invalid Format" )
-            
         }
         if showEnterYourEmail{
             displayAlertMessage(userMessage: "Enter Your Email" )
-            
         }
     }
+    
     @ViewBuilder func passwordShowAlertText() -> some View{
-        
         if showPasswordValidationText{
             displayAlertMessage(userMessage:"Invalid Password" )
-            
         }
         if showPasswordFormat{
             displayAlertMessage(userMessage:"Invalid Format" )
-            
         }
         if showEnterYourPassword{
             displayAlertMessage(userMessage: "Enter Your Password" )
-            
         }
     }
     
-    
     func check(){
-        
         if emailText.isEmpty{
             withAnimation {
                 showEnterYourEmail = true
@@ -239,29 +200,23 @@ struct LoginView: View {
                 withAnimation {
                     showEmailFormat = true
                     showEmailValidationErrorLabel = false
-                    //  showEnterYourEmail = false
                 }
-                
             }else if viewModel.isValidEmail(testStr: emailText){
                 withAnimation {
                     showEmailValidationErrorLabel = false
                     showEmailFormat = false
                 }
-                
             }
         }
-        
         if passWordText.isEmpty{
             withAnimation {
                 showEnterYourPassword = true
-                //  showEmailValidationErrorLabel = false
                 showPasswordValidationText = false
                 showPasswordFormat = false
             }
         }else if !passWordText.isEmpty{
             showEnterYourPassword = false
             if !viewModel.isPasswordValid(passWordText){
-                
                 withAnimation {
                     showPasswordValidationText = false
                     showEnterYourPassword = false
@@ -269,18 +224,13 @@ struct LoginView: View {
                 }
             }else if viewModel.isPasswordValid(passWordText){
                 withAnimation {
-                    //  showEmailValidationErrorLabel = false
                     showPasswordValidationText = false
                     showPasswordFormat = false
                     LoginUser()
                 }
             }
-                  
-            }
-            
         }
-        
-    
+    }
     
     func LoginUser(){
         Auth.auth().signIn(withEmail: emailText , password: passWordText){result, err in
@@ -291,11 +241,9 @@ struct LoginView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     showDonotHaveAccount = false
                 }
-               
                 return
             }else{
                 print("Successfully logged in as user: \(result?.user.uid ?? "")")
-               
                 self.UserstatusMessage = "Successfully logged in as user : \(result?.user.uid ?? "")"
                 isSuccess = true
                 UserDefaults.standard.set(true, forKey: "islogin")
@@ -303,6 +251,7 @@ struct LoginView: View {
         }
     }
 }
+
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()

@@ -12,7 +12,6 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 struct SetNewPasswordView: View {
-  
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var showToast: Bool = false
     @State var toastMessage: String = ""
@@ -20,7 +19,6 @@ struct SetNewPasswordView: View {
     @State var newPasswordText = ""
     @State var confirmPassword = ""
     @State var goToLoginView = false
-  
     @ObservedObject var ViewModel = SetNewPasswordVM()
     
         init(email1: String){
@@ -30,14 +28,11 @@ struct SetNewPasswordView: View {
      }
      
      func saveInfo(){
-         
          let db = Firestore.firestore()
          let email = ViewModel.emailId
        let currentUser = Auth.auth().currentUser
          if  let userId = Auth.auth().currentUser?.uid{
-            // if emailId == email{
                  db.collection("user").document("\(userId)").updateData(["password": newPasswordText])
-                 
                  currentUser?.updatePassword(to: newPasswordText){ err in
                      if let error = err{
                          print("Failure: \(error)")
@@ -46,9 +41,6 @@ struct SetNewPasswordView: View {
                          print("Password changed successfully")
                      }
                  }
-//             }else{
-//                 print("Email doesNot Match")
-//             }
          }
      }
 
@@ -62,8 +54,6 @@ struct SetNewPasswordView: View {
                 } label: {
                     EmptyView()
                 }
-
-                
                 LinearGradient(gradient:
                                 Gradient(colors: [
                                     Color(hex: "1A7BDC").opacity(0.85),
@@ -76,11 +66,9 @@ struct SetNewPasswordView: View {
             }
             .edgesIgnoringSafeArea(.all)
             .loader(isShown: $isLoaderShown)
-            
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        
     }
     
     @ViewBuilder var DCGradientView: some View {
@@ -88,7 +76,6 @@ struct SetNewPasswordView: View {
     }
     
     @ViewBuilder var containerView: some View {
-        
         VStack {
             Image("digiclass")
                 .aspectRatio(contentMode: .fit)
@@ -105,13 +92,11 @@ struct SetNewPasswordView: View {
             .background(Color.white)
             .cornerRadius(8)
             .padding()
-            
         }
     }
     
     @ViewBuilder var headerView: some View {
         ZStack {
-         
                 HStack {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
@@ -120,13 +105,10 @@ struct SetNewPasswordView: View {
                             .font(Font.system(size: 18,weight: .semibold))
                             .foregroundColor(Color(hex: "#666666"))
                     })
-                    
                     Spacer()
                 }
-            
             Text("Set New Password")
                 .foregroundColor(Color(hex: "#666666"))
-           
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 16)
@@ -150,9 +132,7 @@ struct SetNewPasswordView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Confirm Password")
                 .foregroundColor(Color(hex: "#6B7280"))
-           
             TextField("Confirm Password", text: $confirmPassword)
-       
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 5)
@@ -161,12 +141,11 @@ struct SetNewPasswordView: View {
         }
         .frame(maxWidth: .infinity)
     }
+    
     @ViewBuilder var footerView: some View {
         VStack(spacing: 12) {
-            
             Button(action: {
                 if !newPasswordText.isEmpty && !confirmPassword.isEmpty {
-                  //  self.isLoaderShown = true
                     if newPasswordText == confirmPassword {
                         DispatchQueue.main.async {
                             self.saveInfo()
@@ -176,45 +155,19 @@ struct SetNewPasswordView: View {
             },
                    label: {
                 GeometryReader { geometry in
-                    
                     Text("Save and continue")
                         .foregroundColor(.white)
                       
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
                 }
-                
             })
             .frame(height: 50)
             .background(Color(hex: "#147AFC"))
             .cornerRadius(5)
-          //  apiErrorMsgView.background(Color.red)
         }
         .padding(.bottom, 16)
     }
-//    @ViewBuilder var apiErrorMsgView: some View {
-//        if !viewModel.responseErrorMsg.isEmpty {
-//            HStack(spacing: 10) {
-//                Image(systemName: "exclamationmark.circle.fill")
-//                    .frame(width: 24, height: 24)
-//                    .padding(.leading, 8)
-//                    .foregroundColor(.red)
-//                Text(viewModel.responseErrorMsg)
-//                    .foregroundColor(.red)
-//                    .font(.system(size: 15))
-//                    .padding(.trailing, 10)
-//
-//            }
-//            .frame(height: 30)
-//            .background(Color.white)
-//            .cornerRadius(5)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 5)
-//                    .stroke(.red, lineWidth: 1)
-//            )
-//        }
-//    }
-
 }
 
 struct SetNewPasswordView_Previews: PreviewProvider {

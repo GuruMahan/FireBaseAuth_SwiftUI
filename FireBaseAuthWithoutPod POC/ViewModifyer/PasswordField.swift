@@ -33,10 +33,10 @@ struct PasswordField: View {
                 }
             }
             .autocapitalization(.none)
-                                .font(Font.custom("Roboto-Regular", size: 16))
-                                .padding()
-                                .frame(height: 48)
-                                .background(RoundedRectangle(cornerRadius: 5).stroke(Color(hex: "D1D5DB")))
+            .font(Font.custom("Roboto-Regular", size: 16))
+            .padding()
+            .frame(height: 48)
+            .background(RoundedRectangle(cornerRadius: 5).stroke(Color(hex: "D1D5DB")))
         }
     }
 }
